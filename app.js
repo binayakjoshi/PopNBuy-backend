@@ -18,7 +18,7 @@ const port = process.env.PORT || 4000;
 app.use(cors({
     origin: 'https://popnbuy.netlify.app', 
     methods: ['GET', 'POST', 'PATCH', 'DELETE'],
-    allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept', 'Authorization'],
+    allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept', 'Authorization','role'],
 }));
 
 app.use('/files/images',express.static(path.join('files','images')));
