@@ -11,7 +11,7 @@ const HttpError = require("./models/http-error");
 
 const app = express();
 app.use(express.json());
-
+const port = process.env.PORT || 4000;
 app.use((req, res, next) => {
 	res.setHeader('Access-Control-Allow-Origin', '*');
 	res.setHeader('Access-Control-Allow-Headers','Origin, X-Requested-With, Content-Type, Accept, Authorization');
@@ -42,5 +42,5 @@ app.use((error, req, res, next) => {
 });
 mongoose
 	.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.dfagd0o.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority&appName=Cluster0`)
-	.then(()=>app.listen(process.env.PORT))
+	.then(()=>app.listen(port))
 	.catch((err)=>console.log(err));
