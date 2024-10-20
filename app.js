@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const fs = require('fs');
 const path = require('path');
+const cors = require('cors');
 
 
 const userRoutes = require('./routes/user-routes');
@@ -14,12 +15,11 @@ app.use(express.json());
 const port = process.env.PORT || 4000;
 
 
-app.use((req, res, next) => {
-	res.setHeader('Access-Control-Allow-Origin', '*');
-	res.setHeader('Access-Control-Allow-Headers','Origin, X-Requested-With, Content-Type, Accept, Authorization');
- 	res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, DELETE');
- 	next();
-});
+app.use(cors({
+    origin: 'https://popnbuy.netlify.app', 
+    methods: ['GET', 'POST', 'PATCH', 'DELETE'],
+    allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept', 'Authorization'],
+}));
 
 app.use('/files/images',express.static(path.join('files','images')));
 
